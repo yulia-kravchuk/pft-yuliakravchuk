@@ -1,6 +1,10 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.example.tests.ContactData;
 
@@ -27,8 +31,8 @@ public class ContactHelper extends HelperBase {
 		type(By.name("work"), contact.workPhone);
 		type(By.name("email"), contact.email);
 		type(By.name("email2"), contact.email2);		
-		selectByText(By.name("bday"), contact.bDay);
-		selectByText(By.name("bmonth"), contact.bMonth);		
+		selectByIndex(By.name("bday"), contact.bDay);
+		selectByIndex(By.name("bmonth"), contact.bMonth);		
 		type(By.name("byear"), contact.bYear);
 		//selectByText(By.name("new_group"), contact.groupName);	
 		type(By.name("address2"), contact.address2);
@@ -50,6 +54,20 @@ public class ContactHelper extends HelperBase {
 	public void deleteContact(int index) {
 		initContactModification(index);
 		click(By.xpath("//input[@name='update'][@value='Delete']"));
+	}
+
+	public List<ContactData> getGroups() {
+		List<ContactData> contacts = new ArrayList<ContactData>();
+		List<WebElement> lines = driver.findElements(By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
+		for (WebElement line : lines) {
+			ContactData contact = new ContactData();
+			contact.firstName = line.findElement(By.xpath("td[2]")).getText();
+			contact.lastName = line.findElement(By.xpath("td[3]")).getText();
+			contact.email = line.findElement(By.xpath("td[4]/a")).getText();
+			contact.homePhone = line.findElement(By.xpath("td[5]")).getText();
+			contacts.add(contact);
+		}
+		return contacts;
 	}
 
 }

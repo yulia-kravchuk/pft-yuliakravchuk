@@ -56,4 +56,8 @@ public abstract class HelperBase {
 			new Select(driver.findElement(locator)).selectByVisibleText(text);
 		}
 	}
+	
+	protected void selectByIndex(By locator, int value) {					
+		new Select(driver.findElement(locator)).selectByIndex(value);
+	}
 }

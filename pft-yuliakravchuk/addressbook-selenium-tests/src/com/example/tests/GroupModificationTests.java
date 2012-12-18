@@ -18,10 +18,10 @@ public class GroupModificationTests extends TestBase {
 		// Save old state
 		List<GroupData> oldGroupList = app.getGroupHelper().getGroups();
 		
+		// Actions
 		Random rnd = new Random();
 		int index = rnd.nextInt(oldGroupList.size() - 1);
 		
-		// Actions
 		app.getGroupHelper().initGroupModification(index);
 		app.getGroupHelper().fillGroupForm(group);
 		app.getGroupHelper().submitGroupModification();
