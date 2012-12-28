@@ -39,9 +39,9 @@ public class ContactHelper extends HelperBase {
 		if (formType == CREATION) {
 			//selectByText(By.name("new_group"), contact.groupName);
 		} else {
-			//if (driver.findElements(By.name("new_group")).size() != 0) {
-				//throw new Error("Group selector exists in Contact modification form");
-			//}
+			if (driver.findElements(By.name("new_group")).size() != 0) {
+				throw new Error("Group selector exists in Contact modification form");
+			}
 		}
 		type(By.name("address2"), contact.address2);
 		type(By.name("phone2"), contact.phone2);
@@ -66,7 +66,7 @@ public class ContactHelper extends HelperBase {
 
 	public List<ContactData> getContacts() {
 		List<ContactData> contacts = new ArrayList<ContactData>();
-		List<WebElement> lines = driver.findElements(By.xpath("//tr[@name='entry']"));
+		List<WebElement> lines = findElementsWait(By.xpath("//tr[@name='entry']"));
 		for (WebElement line : lines) {
 			ContactData contact = new ContactData();
 			contact.firstName = line.findElement(By.xpath("td[2]")).getText();

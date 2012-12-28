@@ -1,7 +1,5 @@
 package com.example.fw;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -20,7 +18,6 @@ public class ApplicationManager {
 				"D:/Program Files (x86)/Mozilla Firefox/firefox.exe"); 
 		driver = new FirefoxDriver();			
 		baseUrl = "http://localhost/";
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get(baseUrl + "/addressbookv4.1.4/");
 	}
 	

@@ -102,16 +102,16 @@ public class ContactData implements Comparable<ContactData>{
 	}
 
 	String getDisplayedEmail() {
-		return (!email.isEmpty()) ? email : email2;
+		return (!(email == null || email.isEmpty())) ? email : (email2 == null ? "" : email2);
 	}
 
 	String getDisplayedPhone() {		
-		if (!homePhone.isEmpty()) {
+		if (!(homePhone == null || homePhone.isEmpty())) {
 			return homePhone;
 		} 
-		if (!mobilePhone.isEmpty()) {
+		if (!(mobilePhone == null || mobilePhone.isEmpty())) {
 			return mobilePhone;			
 		} 	
-		return workPhone;
+		return workPhone == null ? "" : workPhone;
 	}
 }
