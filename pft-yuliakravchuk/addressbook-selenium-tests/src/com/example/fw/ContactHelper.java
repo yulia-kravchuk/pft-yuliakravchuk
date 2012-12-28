@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase {
+	public static boolean CREATION = true;
+	public static boolean MODIFICATION = false;
 
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
@@ -22,7 +24,7 @@ public class ContactHelper extends HelperBase {
 		click(By.name("submit"));
 	}
 
-	public void fillContactForm(ContactData contact) {
+	public void fillContactForm(ContactData contact, boolean formType) {
 		type(By.name("firstname"), contact.firstName);
 		type(By.name("lastname"), contact.lastName);
 		type(By.name("address"), contact.address);
@@ -34,7 +36,13 @@ public class ContactHelper extends HelperBase {
 		selectByIndex(By.name("bday"), contact.bDay);
 		selectByIndex(By.name("bmonth"), contact.bMonth);		
 		type(By.name("byear"), contact.bYear);
-		//selectByText(By.name("new_group"), contact.groupName);	
+		if (formType == CREATION) {
+			//selectByText(By.name("new_group"), contact.groupName);
+		} else {
+			//if (driver.findElements(By.name("new_group")).size() != 0) {
+				//throw new Error("Group selector exists in Contact modification form");
+			//}
+		}
 		type(By.name("address2"), contact.address2);
 		type(By.name("phone2"), contact.phone2);
 	}
@@ -56,9 +64,9 @@ public class ContactHelper extends HelperBase {
 		click(By.xpath("//input[@name='update'][@value='Delete']"));
 	}
 
-	public List<ContactData> getGroups() {
+	public List<ContactData> getContacts() {
 		List<ContactData> contacts = new ArrayList<ContactData>();
-		List<WebElement> lines = driver.findElements(By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
+		List<WebElement> lines = driver.findElements(By.xpath("//tr[@name='entry']"));
 		for (WebElement line : lines) {
 			ContactData contact = new ContactData();
 			contact.firstName = line.findElement(By.xpath("td[2]")).getText();

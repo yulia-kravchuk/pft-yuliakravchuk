@@ -8,14 +8,15 @@ import java.util.Random;
 
 import org.testng.annotations.Test;
 
+
 public class ContactRemovalTests extends TestBase {
 	
 	@Test
 	public void deleteSomeContact() {
-		app.getNavigationHelper().openMainPage();	
+		app.navigateTo().mainPage();	
 		
 		// Save old state
-		List<ContactData> oldContactList = app.getContactHelper().getGroups();
+		List<ContactData> oldContactList = app.getContactHelper().getContacts();
 		
 		// Actions
 		Random rnd = new Random();
@@ -24,7 +25,7 @@ public class ContactRemovalTests extends TestBase {
 		app.getContactHelper().returnToHomePage();
 		
 		// Save new state
-		List<ContactData> newContactList = app.getContactHelper().getGroups();		
+		List<ContactData> newContactList = app.getContactHelper().getContacts();		
 		
 		// Compare states
 		oldContactList.remove(index);
