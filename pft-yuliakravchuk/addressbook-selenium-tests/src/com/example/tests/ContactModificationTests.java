@@ -1,14 +1,13 @@
 package com.example.tests;
 
-import static org.testng.Assert.assertEquals;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import org.testng.annotations.Test;
 
-import static com.example.fw.ContactHelper.MODIFICATION;;
+import com.example.utils.SortedListOf;
 
 public class ContactModificationTests extends TestBase {
 	
@@ -17,24 +16,20 @@ public class ContactModificationTests extends TestBase {
 		app.navigateTo().mainPage();	
 		
 		// Save old state
-		List<ContactData> oldContactList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldContactList = app.getContactHelper().getContacts();
 		
 		// Actions
 		Random rnd = new Random();
 		int index = rnd.nextInt(oldContactList.size() - 1);
 		
-		app.getContactHelper().initContactModification(index);
-		app.getContactHelper().fillContactForm(contact, MODIFICATION);
-		app.getContactHelper().submitContactModification();
-		app.getContactHelper().returnToHomePage();
+		app.getContactHelper().modifyContact(contact, index);
 		
 		// Save new state
-		List<ContactData> newContactList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> newContactList = app.getContactHelper().getContacts();
 				
 		// Compare states	
-		oldContactList.remove(index);
-		oldContactList.add(index, contact);
-		Collections.sort(oldContactList);
-		assertEquals(newContactList, oldContactList);
+		assertThat(newContactList, equalTo(oldContactList.without(index).withAdded(index, contact)));
 	}
+
+	
 }
