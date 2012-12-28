@@ -33,8 +33,6 @@ public class ContactModificationTests extends TestBase {
 				
 		// Compare states	
 		oldContactList.remove(index);
-		contact.email = contact.getDisplayedEmail();
-		contact.homePhone = contact.getDisplayedPhone();	
 		oldContactList.add(index, contact);
 		Collections.sort(oldContactList);
 		assertEquals(newContactList, oldContactList);

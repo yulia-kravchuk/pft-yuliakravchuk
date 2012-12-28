@@ -98,7 +98,7 @@ public class ContactData implements Comparable<ContactData>{
 	public String toString() {
 		return "ContactData [firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + getDisplayedEmail()
-				+ ", phone=" + getDisplayedPhone().replaceAll("[ ]", "") + "]";
+				+ ", phone=" + getDisplayedPhone() + "]";
 	}
 
 	String getDisplayedEmail() {
@@ -107,11 +107,11 @@ public class ContactData implements Comparable<ContactData>{
 
 	String getDisplayedPhone() {		
 		if (!(homePhone == null || homePhone.isEmpty())) {
-			return homePhone;
+			return homePhone.replaceAll("[ ]", "");
 		} 
 		if (!(mobilePhone == null || mobilePhone.isEmpty())) {
-			return mobilePhone;			
+			return mobilePhone.replaceAll("[ ]", "");			
 		} 	
-		return workPhone == null ? "" : workPhone;
+		return workPhone == null ? "" : workPhone.replaceAll("[ ]", "");
 	}
 }
