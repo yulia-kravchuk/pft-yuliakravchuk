@@ -114,4 +114,22 @@ public class ContactData implements Comparable<ContactData>{
 		} 	
 		return workPhone == null ? "" : workPhone.replaceAll("[ ]", "");
 	}
+
+	public ContactData copyFrom(ContactData sample) {
+		this.firstName = sample.firstName;
+		this.lastName = sample.lastName;
+		this.address = sample.address;
+		this.homePhone = sample.homePhone;
+		this.mobilePhone = sample.mobilePhone;
+		this.workPhone = sample.workPhone;
+		this.email = sample.email;
+		this.email2 = sample.email2;
+		this.bDay = sample.bDay;
+		this.bMonth = sample.bMonth;
+		this.bYear = sample.bYear;
+		this.groupName = sample.groupName;
+		this.address2 = sample.address2;
+		this.phone2 = sample.phone2;
+		return this;
+	}
 }
