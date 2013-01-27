@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.example.tests.TestBase.generateRandomInt;
+import static com.example.tests.TestBase.generateRandomString;
 import com.thoughtworks.xstream.XStream;
-
-import static com.example.fw.HelperBase.generateRandomInt;
-import static com.example.fw.HelperBase.generateRandomString;
 
 public class ContactDataGenerator {
 

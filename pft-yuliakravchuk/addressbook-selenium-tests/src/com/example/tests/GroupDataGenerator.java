@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.tests.TestBase.generateRandomString;
 import com.thoughtworks.xstream.XStream;
 
-import static com.example.fw.HelperBase.generateRandomString;
 
 public class GroupDataGenerator {
 
