@@ -1,6 +1,7 @@
 package com.example.fw;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -75,5 +76,20 @@ public abstract class HelperBase {
 	
 	protected List<WebElement> findElementsWait(By locator) {
 		return wait.until(presenceOfAllElementsLocatedBy(locator));
+	}
+
+//-------------------------------------------------	
+	public static int generateRandomInt(int d) {
+		Random rnd = new Random();		
+		return rnd.nextInt(d);	
+	}
+
+	public static String generateRandomString() {
+	    Random rnd = new Random();
+	    if (rnd.nextInt(3) == 0) {
+	            return "";
+	    } else {
+	            return "test" + rnd.nextInt();
+	    }
 	}
 }

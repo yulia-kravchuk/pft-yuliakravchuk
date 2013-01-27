@@ -100,6 +100,23 @@ public class ContactData implements Comparable<ContactData>{
 				+ ", email=" + getDisplayedEmail()
 				+ ", phone=" + getDisplayedPhone() + "]";
 	}
+	
+	public String toStringAllFields() {
+		return firstName + "," 
+				+ lastName + ","
+				+ address + ","
+				+ homePhone + ","
+				+ mobilePhone + ","
+				+ workPhone + ","
+				+ email + ","
+				+ email2 + ","
+				+ bDay + ","
+				+ bMonth + ","
+				+ bYear + ","
+				+ groupName + ","
+				+ address2 + ","
+				+ phone2;
+	}
 
 	String getDisplayedEmail() {
 		return (!(email == null || email.isEmpty())) ? email : (email2 == null ? "" : email2);
@@ -131,5 +148,132 @@ public class ContactData implements Comparable<ContactData>{
 		this.address2 = sample.address2;
 		this.phone2 = sample.phone2;
 		return this;
+	}
+	
+	public ContactData withFirstName(String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+	
+	public ContactData withLastName(String lastName) {
+		this.lastName = lastName;
+		return this;
+	}
+	
+	public ContactData withAddress(String address) {
+		this.address = address;
+		return this;
+	}
+	
+	public ContactData withHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+		return this;
+	}
+	
+	public ContactData withMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+		return this;
+	}
+	
+	public ContactData withWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+		return this;
+	}
+	
+	public ContactData withEmail(String email) {
+		this.email = email;
+		return this;
+	}
+	
+	public ContactData withEmail2(String email2) {
+		this.email2 = email2;
+		return this;
+	}
+	
+	public ContactData withBDay(int bDay) {
+		this.bDay = bDay;
+		return this;
+	}
+	
+	public ContactData withBMonth(int bMonth) {
+		this.bMonth = bMonth;
+		return this;
+	}
+	
+	public ContactData withBYear(String bYear) {
+		this.bYear = bYear;
+		return this;
+	}
+	
+	public ContactData withGroupName(String groupName) {
+		this.groupName = groupName;
+		return this;
+	}
+	
+	public ContactData withAddress2(String address2) {
+		this.address2 = address2;
+		return this;
+	}
+	
+	public ContactData withPhone2(String phone2) {
+		this.phone2 = phone2;
+		return this;
+	}
+	
+//---------------------------------------------	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getHomePhone() {
+		return homePhone;
+	}
+	
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+	
+	public String getWorkPhone() {
+		return workPhone;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getEmail2() {
+		return email2;
+	}
+	
+	public int getBDay() {
+		return bDay;
+	}
+	
+	public int getBMonth() {
+		return bMonth;
+	}
+	
+	public String getBYear() {
+		return bYear;
+	}
+	
+	public String getGroupName() {
+		return groupName;
+	}
+	
+	public String getAddress2() {
+		return address2;
+	}
+	
+	public String getPhone2() {
+		return phone2;
 	}
 }

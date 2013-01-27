@@ -1,5 +1,6 @@
 package com.example.fw;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -64,6 +65,39 @@ public class ContactHelper extends HelperBase {
 		returnToHomePage();
 		rebuildCache();
 		return this;
+	}
+	
+	public List<ContactData> readContactsFromTable() {
+		List<ContactData> printedContactList = new ArrayList<ContactData>();
+		List<WebElement> cells = driver.findElements(By.xpath("//table[@id='view']//tr//td"));
+		
+		for (WebElement cell : cells) {
+			if (cell.getText().equals(".")) {
+				break;
+			}
+			// Split cell text into rows
+			String[] rows = cell.getText().split(":\\s[HMW]:\\s|\\s[MW]:\\s|\\s?:?\\sBirthday|\\s?:?\\sP|:");
+			ContactData contact = new ContactData();			
+			// Parse First Name and Last Name
+			contact.lastName = ""; // because First Name and Last Name were merged in one field
+			if (rows.length == 0) {
+				contact.firstName = "";
+				contact.homePhone = "";
+				printedContactList.add(contact);
+				continue;
+			} 
+			contact.firstName = rows[0].trim();
+			
+			// Parse displayed phone number
+			if ((rows.length == 1) || // no data except names are specified
+					(rows[1].startsWith(":"))) { // line contains Birthday or Phone 2 info
+				contact.homePhone = "";
+			} else {
+				contact.homePhone = rows[1];
+			}			
+			printedContactList.add(contact);
+		}
+		return printedContactList;
 	}
 
 //-----------------------------------------------------------------------------------

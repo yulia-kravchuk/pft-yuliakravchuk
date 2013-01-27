@@ -1,7 +1,10 @@
 package com.example.fw;
 
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 
 public class ApplicationManager {
@@ -12,13 +15,28 @@ public class ApplicationManager {
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
+	private Properties properties;
 	
-	public ApplicationManager() {
-		System.setProperty("webdriver.firefox.bin",
-				"D:/Program Files (x86)/Mozilla Firefox/firefox.exe"); 
-		driver = new FirefoxDriver();			
-		baseUrl = "http://localhost/";
-		driver.get(baseUrl + "/addressbookv4.1.4/");
+	public ApplicationManager(Properties properties) {
+		this.properties = properties;
+		String browser = this.properties.getProperty("browser");
+		switch (browser) {
+		case "firefox":
+			System.setProperty("webdriver.firefox.bin",
+					"D:/Program Files (x86)/Mozilla Firefox/firefox.exe"); 
+			driver = new FirefoxDriver();
+			break;
+		case "ie":
+			System.setProperty("webdriver.ie.driver",
+					"D:/Installs/Programming/Selenium/IEDriverServer.exe"); 
+			driver = new InternetExplorerDriver();
+			break;
+		default:
+			throw new Error("Unsupported browser: " + browser);
+		}
+					
+		baseUrl = this.properties.getProperty("baseurl");
+		driver.get(baseUrl);
 	}
 	
 	public void stop() {
